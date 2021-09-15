@@ -34,7 +34,7 @@ export const ProductDetailsSlider = props => {
       <div key={image}>
         <Image
           alt=""
-          src={`http://localhost:3000/${image}`}
+          src={process.env.PUBLIC_URL + "/" + image}
           style={{
             width: "99%",
             height: "99%",

@@ -22,7 +22,7 @@ export const CartItem = ({ props, handleDel, handleQty }) => {
           </RemoveBtn>
         </ProductDescription>
       </div>
-      <div>{props.price.toLocaleString("de-CH")} UAH</div>
+      <div>{props.price} UAH</div>
       <div>
         <StyledSelect>
           <select

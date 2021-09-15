@@ -38,8 +38,8 @@ export const ProductItem = props => {
     <Card key={props.key} itemNo={props.itemNo}>
       <FavoriteButton />
       <Image
-        alt=""
-        src={`http://localhost:3000/${props.imageUrls[0]}`}
+        alt=""        
+        src={process.env.PUBLIC_URL + "/" +props.imageUrls[0]}
         size={"small"}
       />
       <Name

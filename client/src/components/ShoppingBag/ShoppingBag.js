@@ -154,7 +154,7 @@ export const ShoppingBag = () => {
                 </Discount>
                 <GrandTotalWrap>
                   <p>ESTIMATED TOTAL</p>
-                  <div>{totalInCart.toLocaleString("de-CH")} UAH</div>
+                  <div>{totalInCart} UAH</div>
                 </GrandTotalWrap>
                 <CheckoutWrap onClick={() => history.push("/account/checkout")}>
                   <Button value={"CHECKOUT"} />

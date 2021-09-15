@@ -48,7 +48,7 @@ export const WishlistItem = props => {
           </ProductDescription>
         </div>
         <Wrapper>
-          <div>{props.previousPrice.toLocaleString("de-CH")} UAH</div>
+          <div>{props.previousPrice} UAH</div>
           <ShoppingBagIcon onClick={add} />
         </Wrapper>
       </ItemContainer>

@@ -37,7 +37,7 @@ export const ProductItem = props => {
         <Image alt="" src={`${props.img}`} size={"small"} />
         <Name size={"small"}>{`${props.name}`}</Name>
         <Price size={"small"}>
-          {props.previousPrice.toLocaleString("de-CH")}
+          {props.previousPrice}
         </Price>
       </Card>
     </Wrapper>
