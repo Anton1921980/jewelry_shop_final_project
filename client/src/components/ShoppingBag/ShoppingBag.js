@@ -184,7 +184,7 @@ export const ShoppingBag = () => {
                 </Discount>
                 <GrandTotalWrap>
                   <p>ESTIMATED TOTAL</p>
-                  <div>{totalInCart.toLocaleString("de-CH")} UAH</div>
+                  <div>{totalInCart} UAH</div>
                 </GrandTotalWrap>
                 <Discount display={"block"}>
                   Discount and Shipping will be calculated at checkout, where

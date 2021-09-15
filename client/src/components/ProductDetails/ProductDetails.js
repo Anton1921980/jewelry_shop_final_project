@@ -50,7 +50,7 @@ export const ProductDetails = () => {
       const res = await axios.get(`/products/${id}`);
       setImages(res.data.imageUrls);
       setProducts(res.data);
-      setPrice(res.data.previousPrice.toLocaleString("de-CH"));
+      setPrice(res.data.previousPrice);
       setLoading(false);
       setIds(ids => [...ids, id]);
       localStorage.setItem("recent_ids", ids);

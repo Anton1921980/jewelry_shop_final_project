@@ -50,7 +50,7 @@ export const ProductItem = props => {
           <p>"{props.collection}"</p>
         </Name>
         <Price size={"small"}>
-          {props.previousPrice.toLocaleString("de-CH")}
+          {props.previousPrice}
         </Price>
       </Card>
     </Wrapper>
