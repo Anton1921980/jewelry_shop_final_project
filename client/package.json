@@ -56,7 +56,12 @@
   },
   "proxy": "http://localhost:5000",
   "reactSnap": {
-    "puppeteerExecutablePath": "/usr/bin/google-chrome-unstable",
+    "reactSnap": {
+      "puppeteerArgs": [
+        "--no-sandbox",
+        "--disable-setuid-sandbox"
+      ]
+    },
     "include": [
       "/"
     ],
