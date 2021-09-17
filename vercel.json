@@ -12,5 +12,11 @@
             "dest": "/"   
            
         }
-    ]
+        
+    ],
+    "functions": {
+        "pages/api/**": {
+          "excludeFiles": "{public,.next,pages,images,_next,gen}/**"
+        }
+      }
   }
