@@ -108,23 +108,20 @@ process.env.NODE_ENV="production";
 if (process.env.NODE_ENV === "production") {
   // Set static folder
 
-  const root = require('path').join(__dirname, 'client', 'build')
-  app.use(express.static(root));
+  // const root2 = require('path').join(__dirname, 'client', 'build')
+  // const index = path.join(__dirname, 'client', 'build', 'index.html');
+  // app.use(express.static(root2));
+  // app.get("*", (req, res) => {
+  //     res.sendFile(index);
+  // })
+
+  const index1 = path.join(__dirname,'client', 'build');
+  app.use(express.static(index1));
+
   app.get("*", (req, res) => {
-      res.sendFile('index.html', { root });
-  })
+    // res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    const index2 = path.join(__dirname,'client', 'build', 'index.html');
+    res.sendFile(index2);
+  });
+}
 
-
-
-//   app.use(express.static(__dirname + 'client/build'));
-
-//   app.get("*", (req, res) => {
-//     // res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-//     const index = path.join(__dirname,'client', 'build', 'index.html');
-//     res.sendFile(index);
-//   });
-// }
-
-// const port = process.env.PORT || 5000;
-
-// app.listen(port, () => console.log(`Server running on port ${port}`));
