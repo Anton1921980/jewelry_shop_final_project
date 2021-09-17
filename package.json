@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon index.js",
-    "start": "nodemon index.js",
+    "start": "node index.js",
     "format": "prettier --write \"client/src/**/*.+(js|jsx|json|yml|yaml|css|md|vue)\"",
     "prettier": "prettier --check \"client/src/**/*.+(js|jsx|json|yml|yaml|css|md|vue)\"",
     "lint": "eslint .",
