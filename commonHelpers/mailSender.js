@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 const keys = require("../config/keys");
 const getConfigs = require("../config/getConfigs");
 
-// process.env.NODE_ENV === "development"
+
 
 module.exports = async (subscriberMail, letterSubject, letterHtml, res) => {
   const configs = await getConfigs();

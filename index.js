@@ -101,8 +101,8 @@ app.use("/partners", partners);
 // NGINX Serves static files.
 // This is in case no route match is found to redirect to index and show 404 with React-Router.
 
-// process.env.NODE_ENV="production";
-process.env.NODE_ENV="development";
+process.env.NODE_ENV="production";
+// process.env.NODE_ENV="development";
 
 // Server static assets if in production
 if (process.env.NODE_ENV === "production") {
