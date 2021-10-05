@@ -39,7 +39,9 @@ console.log(configs)
   };
 
   const result = await transporter.sendMail(mailOptions);
+  console.log("TCL:mailSender.js  result", result)
 
   return result
-  console.log(result);
+
+  
 };
