@@ -6,6 +6,9 @@ import styled from "styled-components";
 
 export function AddSubscriber(props) {
   const email = props.email;
+  
+  console.log("TCL: AddSubscriber -> email", email)
+
   let emailValue = props.emailValue;
   let setSignup = props.setSignup;
   let setEmail = props.setEmail;
@@ -26,12 +29,12 @@ export function AddSubscriber(props) {
 
     axios
       .post("http://localhost:5000/customers/login", {
-        loginOrEmail: "alexander.savchenko@djangostars.com",
-        password: "pyg6MW3mi7HRuH9"
+        loginOrEmail: "customer@gmail.com",
+        password: "1111111"
       })
       .then(response => {
         let token = response.data.token;
-        console.log("TCL: AddSubscriber -> token", token);
+        // console.log("TCL: AddSubscriber -> token", token);
         axios
           .post("http://localhost:5000/subscribers", newSubscriber, {
             headers: { Authorization: `${token}` }
