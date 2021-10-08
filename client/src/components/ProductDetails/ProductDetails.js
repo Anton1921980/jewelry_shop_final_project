@@ -76,6 +76,7 @@ export const ProductDetails = () => {
         metal_color={products.metal_color}
         weight={products.weight}
         sample={products.sample}
+        category={products.categories}
       />
       <SliderProducts
         h4={"COMPLETE THE SET"}

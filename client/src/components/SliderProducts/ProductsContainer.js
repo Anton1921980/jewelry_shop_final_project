@@ -21,7 +21,8 @@ import {
 } from "./users-selectors";
 
 const ProductsContainer = props => {
-  // console.log(props);
+console.log("TCL: props", props)
+
   // const { currentPage, pageSize } = props;
   const { currentPage, pageSize } = props;
   let location = useLocation();
@@ -30,15 +31,18 @@ const ProductsContainer = props => {
 
   let { category } = useParams();
   console.log("TCL: category", category);
+
   const queryString = [];
   for (let key in props.filters) {
     props.filters[key].length &&
       queryString.push(`${key}=${props.filters[key].join(",")}`);
   }
-
+   const commonSort = props.commonSort
   const query = querystring.stringify(props.filters, { arrayFormat: "comma" });
-  const categoryQuery = `${query}`;
-  console.log("TCL: categoryQuery", categoryQuery);
+  const categoryQuery = `${query}${commonSort}`;
+  
+  console.log("TCL: categoryQuery", categoryQuery)
+ 
   const category2 = `&categories=${category}`;
   // let category3
   const apiCategory = categoryQuery + category2;
@@ -53,7 +57,7 @@ const ProductsContainer = props => {
   (!truePage && (truePage2 = +currentPage)) ||
     (truePage > 0 && (truePage2 = +truePage)); //чтобы c первой загрузки /pagin активна 1я страница
 
-  query && query.length > 0 && (truePage2 = 1); // чтобы при активации фильтров сбрасывало на 1ю страницу
+    categoryQuery && categoryQuery.length > 0 && (truePage2 = 1); // чтобы при активации фильтров сбрасывало на 1ю страницу
 
   useEffect(() => {
     //первая загрузка откроется, и номер страницы в урле, и работает назад вперед
@@ -64,7 +68,7 @@ const ProductsContainer = props => {
       apiCategory,
       category2
     );
-  }, [truePage2, query]);
+  }, [truePage2, categoryQuery]);
 
   const onPageChanged = pageNumber => {
     // из пагинатора
@@ -142,13 +146,14 @@ let mapStateToProps = (state, categoryQuery, apiCategory, category2, query) => {
     category2: category2,
     apiCategory: apiCategory,
     categoryQuery: categoryQuery,
-    query: query,
+    query: query,  
     products: getProducts(state),
     products: moreProducts(state),
     pageSize: getPageSize(state),
     productsQuantity: getTotalProductsCount(state),
     currentPage: getCurrentPage(state),
-    filters: state.filters.selFilters
+    filters: state.filters.selFilters,
+    // filters: state.filters.priceRange
   };
 };
 

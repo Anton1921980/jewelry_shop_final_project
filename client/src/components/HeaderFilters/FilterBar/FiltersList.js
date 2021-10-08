@@ -24,7 +24,8 @@ export const FiltersList = connect(mapStateToProps, {
     "metal",
     "metal_color",
     "gemstone",
-    "gemstone_color"
+    "gemstone_color",
+    "categories",
   ];
 
   const handleChange = (e, nodes) => {

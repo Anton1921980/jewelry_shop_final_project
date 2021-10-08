@@ -20,6 +20,7 @@ import { Button } from "../common/Button/Button";
 import { SortedbyPopup } from "./SortedbyPopup";
 import { FilteredListProducts } from "./FilteredProducts";
 import ProductsContainer from "./../SliderProducts/ProductsContainer";
+import pendants from "./images/pendants.png";
 import earrings from "./images/earrings.png";
 import bracelets from "./images/bacelets.png";
 import rings from "./images/rings.png";
@@ -54,7 +55,8 @@ export const ProductFilters = props => {
     "metal",
     "metal_color",
     "gemstone",
-    "gemstone_color"
+    "gemstone_color",
+    "categories"
   ];
 
   useLayoutEffect(() => {
@@ -126,6 +128,9 @@ export const ProductFilters = props => {
       case "bracelets": {
         return bracelets;
       }
+      case "pendants": {
+        return pendants;
+      }
       case "rings": {
         return rings;
       }
@@ -187,17 +192,22 @@ export const ProductFilters = props => {
         <SelectedProducts>
           <SelectedProductsHeader>
             <p>{`Selected products (${selectedProd})`}</p>
-            {/* <SortSection>
+            <SortSection>
               <p>SORTED BY</p>
               <StyledSelect onChange={selectAction} defaultValue="Choose">
                 <option value="priceIncrease">Price increase</option>
                 <option value="priceDecrease">Price decrease</option>
               </StyledSelect>
-            </SortSection> */}
+            </SortSection>
           </SelectedProductsHeader>
           <FilterIndicators />
+
+          {/* ИГОРЯ на залогиненом работает фильтр цены*/}
           {/* <FilteredListProducts category={category} /> */}
-          <ProductsContainer />
+
+          {/* МОЙ */}
+          <ProductsContainer commonSort={commonSort}/>
+
         </SelectedProducts>
       </CategotiesCommon>
     </Layout>

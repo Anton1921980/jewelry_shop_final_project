@@ -45,7 +45,8 @@ const initialState = {
     metal: [],
     metal_color: [],
     gemstone: [],
-    gemstone_color: []
+    gemstone_color: [],
+    categories:[],
   },
   menuState: {
     price: false,
@@ -53,7 +54,8 @@ const initialState = {
     metal: false,
     metal_color: false,
     gemstone: false,
-    gemstone_color: false
+    gemstone_color: false,
+    categories: false,
   },
   priceRange: {
     lowPriсe: 0,
@@ -107,7 +109,8 @@ export function filtersReduser(store = initialState, { type, payload }) {
           metal: [],
           metal_color: [],
           gemstone: [],
-          gemstone_color: []
+          gemstone_color: [],
+          categories:[],
         }
       };
     }
