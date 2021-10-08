@@ -187,13 +187,13 @@ export const ProductFilters = props => {
         <SelectedProducts>
           <SelectedProductsHeader>
             <p>{`Selected products (${selectedProd})`}</p>
-            <SortSection>
+            {/* <SortSection>
               <p>SORTED BY</p>
               <StyledSelect onChange={selectAction} defaultValue="Choose">
                 <option value="priceIncrease">Price increase</option>
                 <option value="priceDecrease">Price decrease</option>
               </StyledSelect>
-            </SortSection>
+            </SortSection> */}
           </SelectedProductsHeader>
           <FilterIndicators />
           {/* <FilteredListProducts category={category} /> */}

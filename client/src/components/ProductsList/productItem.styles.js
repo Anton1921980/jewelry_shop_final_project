@@ -22,7 +22,7 @@ export const Wrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   margin: 5px;
-  width: 280px;
+  width: 270px;
   height: 350px;
   text-decoration: none;
   box-sizing: border-box;
@@ -46,7 +46,7 @@ export const Wrapper = styled.div`
        justify-content: space-between;
        border: 1px solid rgb(233, 235, 245);
        margin: 5px;
-       width: 280px;
+       width: 270px;
        height: 392px;
        ${mediaTablet(`
   width: 250px;

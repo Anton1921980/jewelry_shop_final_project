@@ -40,6 +40,8 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     line-height: 1;
+    max-width: 100%;  
+    overflow-x: hidden;
   }
   ol, ul {
     list-style: none;
