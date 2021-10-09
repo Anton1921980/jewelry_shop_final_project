@@ -30,7 +30,7 @@ console.log("TCL: props", props)
   // console.log("TCL: path", path);
 
   let { category } = useParams();
-  console.log("TCL: category", category);
+ 
 
   const queryString = [];
   for (let key in props.filters) {

@@ -25,8 +25,10 @@ export const Routes = () => {
       <Route exact path="/" component={Homepage} />
       <Route path="/headerMenu/:chosenMenu" component={ProductFilters} />
       <Route exact path="/giftсards" component={GiftCardView} />
-      <Route path="/categories/:homepagecategory" component={ProductFilters} />
-      <Route path="/products" component={ProductFilters} />
+      <Route path="/categories/:category?" component={ProductFilters} />
+      <Route path="/products/:all_categories?" component={ProductFilters} />
+      {/* <Route path="/categories/:homepagecategory" component={ProductFilters} />
+      <Route path="/products" component={ProductFilters} /> */}
       <Route path="/product-details/:id" component={ProductDetailsLayout} />
       <Route exact path="/account" component={AccountRoute} />
       <Route

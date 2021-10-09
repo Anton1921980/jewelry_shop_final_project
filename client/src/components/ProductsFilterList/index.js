@@ -28,6 +28,8 @@ import necklaces from "./images/necklaces.png";
 import dropArrow from "./images/DroppArrow.png";
 
 export const ProductFilters = props => {
+  let { category } = useParams();
+  
   const { homepagecategory } = useParams();
   const { chosenMenu } = useParams();
   const dispatch = useDispatch();
@@ -38,7 +40,9 @@ export const ProductFilters = props => {
   );
   const priceFilters = useSelector(state => state.filters.priceRange);
   // const category = (!!homepagecategory) ? chosenMenu : homepagecategory.replace("homepage", "");
-  const category = !!homepagecategory ? homepagecategory : chosenMenu;
+
+  // const category = !!homepagecategory ? homepagecategory : chosenMenu;
+  
 
   const [openFiltwin, setOpenFiltwind] = useState(false);
   const [isOpenSortedPopup, setIsOpenSortedPopup] = useState(false);
@@ -46,7 +50,7 @@ export const ProductFilters = props => {
   const [queryCategory, setQueryCategory] = useState("");
   const [breadcrumbsCategory, setBreadcrumbsCategory] = useState("");
   const [sortType, setSortType] = useState("");
-  const initialPriceValue = { min: 0, max: 200000 };
+  const initialPriceValue = { min: 0, max: 150000 };
 
   // console.log(homepagecategory, chosenMenu, category)
   const filtredBy = [
@@ -116,6 +120,9 @@ export const ProductFilters = props => {
   useEffect(() => {
     const filterUrl = `/products/filter?${queryCategory}&${query}${commonSort}`;
   }, [query, commonSort, queryCategory, sortType]);
+  console.log("TCL: queryCategory", queryCategory)
+ 
+ 
 
   const background = name => {
     switch (name) {
@@ -143,10 +150,10 @@ export const ProductFilters = props => {
     <Layout>
       <CategoriesHeader>
         <p>{category}</p>
-        <CategoriesHeaderImg categoryName={background(breadcrumbsCategory)} />
+        <CategoriesHeaderImg category={category} />
       </CategoriesHeader>
       {window.innerWidth < 767 ? null : (
-        <IconBreadcrumbs categoryName={breadcrumbsCategory} />
+        <IconBreadcrumbs categoryName={category} />
       )}
       <CategotiesCommon>
         {window.innerWidth < 767 ? (
@@ -193,7 +200,7 @@ export const ProductFilters = props => {
           <SelectedProductsHeader>
             <p>{`Selected products (${selectedProd})`}</p>
             <SortSection>
-              <p>SORTED BY</p>
+              <p>SORT BY</p>
               <StyledSelect onChange={selectAction} defaultValue="Choose">
                 <option value="priceIncrease">Price increase</option>
                 <option value="priceDecrease">Price decrease</option>
@@ -230,7 +237,8 @@ const CategoriesHeader = styled.div`
   }
 `;
 const CategoriesHeaderImg = styled.div`
-  background-image: url(${props => props.categoryName});
+  background-image:   url(/img/homePage/categories/${props => props.category}.png) ;
+  /img/products/necklaces
   height: inherit;
   width: 668px;
   background-repeat: no-repeat;

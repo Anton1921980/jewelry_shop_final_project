@@ -59,7 +59,7 @@ const initialState = {
   },
   priceRange: {
     lowPriсe: 0,
-    hightPrice: 200000
+    hightPrice: 150000
   }
 };
 
