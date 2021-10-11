@@ -29,7 +29,7 @@ import dropArrow from "./images/DroppArrow.png";
 
 export const ProductFilters = props => {
   let { category } = useParams();
-  
+
   const { homepagecategory } = useParams();
   const { chosenMenu } = useParams();
   const dispatch = useDispatch();
@@ -42,7 +42,7 @@ export const ProductFilters = props => {
   // const category = (!!homepagecategory) ? chosenMenu : homepagecategory.replace("homepage", "");
 
   // const category = !!homepagecategory ? homepagecategory : chosenMenu;
-  
+
 
   const [openFiltwin, setOpenFiltwind] = useState(false);
   const [isOpenSortedPopup, setIsOpenSortedPopup] = useState(false);
@@ -104,14 +104,25 @@ export const ProductFilters = props => {
   }, [category]);
 
   const query = querystring.stringify(filters, { arrayFormat: "comma" });
-  const querySort =
-    sortType &&
-    (sortType === "price Increase"
-      ? "&sort=+currentPrice"
-      : "&sort=-currentPrice");
-  const commonSort = `${query ? "&" : ""}minPrice=${
-    priceFilters.lowPriсe
-  }&maxPrice=${priceFilters.hightPrice}${querySort}`;
+
+  let querySort = ""
+  if (sortType && sortType === "price increase") {
+    querySort = "&sort=+currentPrice";
+  }
+  else if (sortType && sortType === "price decrease") {
+    querySort = "&sort=-currentPrice";
+  }
+  else if (sortType && sortType === "new products") {
+    querySort = "";
+  }
+  // const querySort =
+  //   sortType &&
+  //   (sortType === "price increase"
+  //     ? "&sort=+currentPrice"
+  //     : "&sort=-currentPrice");
+
+  const commonSort = `${query ? "&" : ""}minPrice=${priceFilters.lowPriсe
+    }&maxPrice=${priceFilters.hightPrice}${querySort}`;
 
   const selectAction = e => {
     setSortType(e.target.value);
@@ -121,8 +132,6 @@ export const ProductFilters = props => {
     const filterUrl = `/products/filter?${queryCategory}&${query}${commonSort}`;
   }, [query, commonSort, queryCategory, sortType]);
   console.log("TCL: queryCategory", queryCategory)
- 
- 
 
   const background = name => {
     switch (name) {
@@ -201,9 +210,10 @@ export const ProductFilters = props => {
             <p>{`Selected products (${selectedProd})`}</p>
             <SortSection>
               <p>SORT BY</p>
-              <StyledSelect onChange={selectAction} defaultValue="Choose">
-                <option value="priceIncrease">Price increase</option>
-                <option value="priceDecrease">Price decrease</option>
+              <StyledSelect onChange={selectAction} default="choose">
+                <option value="new products">new products</option>
+                <option value="price increase">price increase</option>
+                <option value="price decrease">price decrease</option>
               </StyledSelect>
             </SortSection>
           </SelectedProductsHeader>
@@ -213,7 +223,7 @@ export const ProductFilters = props => {
           {/* <FilteredListProducts category={category} /> */}
 
           {/* МОЙ */}
-          <ProductsContainer commonSort={commonSort}/>
+          <ProductsContainer commonSort={commonSort} />
 
         </SelectedProducts>
       </CategotiesCommon>

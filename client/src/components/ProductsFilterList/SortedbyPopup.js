@@ -13,9 +13,9 @@ export const SortedbyPopup = props => {
   return (
     <MoadalContainer>
       <StyledSelect onChange={selectAction}>
-        <option default>Choose sort type</option>
-        <option value="price Increase">Price increase</option>
-        <option value="price Decrease">Price decrease</option>
+        <option value="new products">new products</option>
+        <option value="price increase">price increase</option>
+        <option value="price decrease">price decrease</option>
       </StyledSelect>
     </MoadalContainer>
   );

@@ -49,13 +49,14 @@ const initialState = {
     categories:[],
   },
   menuState: {
-    price: false,
+    price: true,
+    categories: false,
     collection: false,
     metal: false,
     metal_color: false,
     gemstone: false,
     gemstone_color: false,
-    categories: false,
+   
   },
   priceRange: {
     lowPriсe: 0,
