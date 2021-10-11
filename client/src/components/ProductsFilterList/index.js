@@ -193,7 +193,7 @@ export const ProductFilters = props => {
           </MobileCategoriesFilters>
         ) : (
           <CategoriesFilters>
-            <p>FILTER BY</p>
+            <p>FILTER BY:</p>
             <FiltersList filtredBy={filtredBy} />
             <ButtonSection>
               <Button
@@ -209,7 +209,7 @@ export const ProductFilters = props => {
           <SelectedProductsHeader>
             <p>{`Selected products (${selectedProd})`}</p>
             <SortSection>
-              <p>SORT BY</p>
+              <p>Sort by:</p>
               <StyledSelect onChange={selectAction} default="choose">
                 <option value="new products">new products</option>
                 <option value="price increase">price increase</option>
@@ -329,11 +329,11 @@ const SelectedProducts = styled.div`
 const SelectedProductsHeader = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
   & > p {
     font-family: Old Standard TT;
     font-size: 17px;
-    text-transform: uppercase;
-    margin-bottom: 23px;
+    text-transform: uppercase;   
   }
   ${mediaMobile(`;
      display:none;     
