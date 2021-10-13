@@ -41,12 +41,12 @@ const priceRange = payload => ({
 const initialState = {
   availFilters: [],
   selFilters: {
+    categories:[],
     collection: [],
     metal: [],
     metal_color: [],
     gemstone: [],
-    gemstone_color: [],
-    categories:[],
+    gemstone_color: [],   
   },
   menuState: {
     price: true,

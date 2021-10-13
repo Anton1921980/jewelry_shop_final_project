@@ -18,8 +18,11 @@ import { Checkbox } from "../../common/Checkbox/Checkbox";
 import { InputEmail } from "../InputEmail/InputEmail";
 import { InputPassword } from "../InputPassword/InputPassword";
 import { loginAction } from "../../../store/login";
+import { Layout } from "../../common/Layout";
 
 export const LoginForm = props => {
+  console.log("TCL: props", props)
+
   const { onClose, onRegister } = props;
 
   const [emailValidation] = useState(true);
@@ -39,40 +42,42 @@ export const LoginForm = props => {
   const dispatch = useDispatch();
 
   return (
-    <Modal onClose={onClose}>
-      <FormWrapper>
-        <FormLogIn>
-          <FormTitle>Log in</FormTitle>
-          <FormSubtitle>
-            Please enter your details to log in to your Zarina Account.
-          </FormSubtitle>
-          <InputHolder>
-            <InputEmail value={email} onChange={onEmailChange} />
-          </InputHolder>
-          <InputHolder>
-            <InputPassword value={password} onChange={onPasswordChange} />
-          </InputHolder>
-          <Checkbox onClick={rememberMe}>
-            <CheckboxText>Remember me</CheckboxText>
-          </Checkbox>
-          <Button
-            value="Log in"
-            onClick={onSubmit}
-            disabled={!emailValidation || !passwordValidation}
-          />
-        </FormLogIn>
-        <Line />
-        <FormRegister>
-          <FormTitle>Create your account</FormTitle>
-          <FormRegisterSubtitle>
-            By creating Zarina Account, you will be able to place your order
-            faster, store multiple shipping addresses, view and track orders,
-            and perform many other operations.
-          </FormRegisterSubtitle>
-          <Button value="Register" onClick={onRegister} />
-        </FormRegister>
-      </FormWrapper>
-    </Modal>
+    <Layout>
+      <Modal onClose={onClose}>
+        <FormWrapper>
+          <FormLogIn>
+            <FormTitle>Log in</FormTitle>
+            <FormSubtitle>
+              Please enter your details to log in to your Zarina Account.
+            </FormSubtitle>
+            <InputHolder>
+              <InputEmail value={email} onChange={onEmailChange} />
+            </InputHolder>
+            <InputHolder>
+              <InputPassword value={password} onChange={onPasswordChange} />
+            </InputHolder>
+            <Checkbox onClick={rememberMe}>
+              <CheckboxText>Remember me</CheckboxText>
+            </Checkbox>
+            <Button
+              value="Log in"
+              onClick={onSubmit}
+              disabled={!emailValidation || !passwordValidation}
+            />
+          </FormLogIn>
+          <Line />
+          <FormRegister>
+            <FormTitle>Create your account</FormTitle>
+            <FormRegisterSubtitle>
+              By creating Zarina Account, you will be able to place your order
+              faster, store multiple shipping addresses, view and track orders,
+              and perform many other operations.
+            </FormRegisterSubtitle>
+            <Button value="Register" onClick={onRegister} />
+          </FormRegister>
+        </FormWrapper>
+      </Modal>
+    </Layout>
   );
 
   function onSubmit(event) {

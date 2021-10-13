@@ -20,12 +20,12 @@ export const FiltersList = connect(mapStateToProps, {
   setDeleteFilter
 })(props => {
   const filtredBy = [
+    "categories",
     "collection",
     "metal",
     "metal_color",
     "gemstone",
-    "gemstone_color",
-    "categories",
+    "gemstone_color",    
   ];
 
   const handleChange = (e, nodes) => {

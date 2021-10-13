@@ -57,7 +57,7 @@ export const Wishlist = props => {
             <Fragment>
               {window.matchMedia(`(min-width: ${mediaQueryMobile}px)`)
                 .matches || isMobile.width > mediaQueryMobile ? (
-                <Continue onClick={() => history.push("/")}>
+                <Continue onClick={() => history.push("/products")}>
                   <ArrowImg src={arrow} />
                   Continue Shopping
                 </Continue>

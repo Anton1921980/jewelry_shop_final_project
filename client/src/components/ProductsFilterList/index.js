@@ -53,14 +53,14 @@ export const ProductFilters = props => {
   const initialPriceValue = { min: 0, max: 150000 };
 
   // console.log(homepagecategory, chosenMenu, category)
-  const filtredBy = [
+  const filtredBy = [  
     "price",
+    "categories",
     "collection",
     "metal",
     "metal_color",
     "gemstone",
-    "gemstone_color",
-    "categories"
+    "gemstone_color",   
   ];
 
   useLayoutEffect(() => {

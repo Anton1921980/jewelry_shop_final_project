@@ -39,3 +39,11 @@ export const ServicesIcon = styled(NavLink)`
   align-items: center;
   margin-left: 30px;
 `;
+export const Icon = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: 30px;
+  cursor: pointer;
+`;
+

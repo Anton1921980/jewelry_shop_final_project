@@ -13,7 +13,7 @@ export const Login = props => {
       {user ? (
         <LoginText>{user.firstName}</LoginText>
       ) : (
-        <LoginText>My account</LoginText>
+        <LoginText>Login</LoginText>
       )}
     </ServicesIcon>
   );
