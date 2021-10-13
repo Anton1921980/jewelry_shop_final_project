@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.dc48812a.chunk.css",
-    "main.js": "/static/js/main.bc25f502.chunk.js",
-    "main.js.map": "/static/js/main.bc25f502.chunk.js.map",
+    "main.css": "/static/css/main.923300d4.chunk.css",
+    "main.js": "/static/js/main.f93794e0.chunk.js",
+    "main.js.map": "/static/js/main.f93794e0.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.98d32e4b.js",
     "runtime-main.js.map": "/static/js/runtime-main.98d32e4b.js.map",
     "static/css/2.1c9ef103.chunk.css": "/static/css/2.1c9ef103.chunk.css",
-    "static/js/2.b312feec.chunk.js": "/static/js/2.b312feec.chunk.js",
-    "static/js/2.b312feec.chunk.js.map": "/static/js/2.b312feec.chunk.js.map",
+    "static/js/2.65a962e2.chunk.js": "/static/js/2.65a962e2.chunk.js",
+    "static/js/2.65a962e2.chunk.js.map": "/static/js/2.65a962e2.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.45ed0ee2f62102f0b4adceb7d3bdfd17.js": "/precache-manifest.45ed0ee2f62102f0b4adceb7d3bdfd17.js",
+    "precache-manifest.79db000f2a02c27ed069fa5ea1ff4e35.js": "/precache-manifest.79db000f2a02c27ed069fa5ea1ff4e35.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.1c9ef103.chunk.css.map": "/static/css/2.1c9ef103.chunk.css.map",
-    "static/css/main.dc48812a.chunk.css.map": "/static/css/main.dc48812a.chunk.css.map",
-    "static/js/2.b312feec.chunk.js.LICENSE.txt": "/static/js/2.b312feec.chunk.js.LICENSE.txt",
+    "static/css/main.923300d4.chunk.css.map": "/static/css/main.923300d4.chunk.css.map",
+    "static/js/2.65a962e2.chunk.js.LICENSE.txt": "/static/js/2.65a962e2.chunk.js.LICENSE.txt",
     "static/media/Aultra.png": "/static/media/Aultra.44a40fb0.png",
     "static/media/Melanca.png": "/static/media/Melanca.b3f10b03.png",
     "static/media/Montserrat-Bold.ttf": "/static/media/Montserrat-Bold.ade91f47.ttf",
@@ -29,6 +29,7 @@
     "static/media/headerDesign.png": "/static/media/headerDesign.6c5a5959.png",
     "static/media/mainLogo.png": "/static/media/mainLogo.235ee09b.png",
     "static/media/necklaces.png": "/static/media/necklaces.29d19c7d.png",
+    "static/media/pendants.png": "/static/media/pendants.e4444585.png",
     "static/media/phone.svg": "/static/media/phone.e6dbbffa.svg",
     "static/media/rings.png": "/static/media/rings.28d3c807.png",
     "static/media/shop.svg": "/static/media/shop.1986a7aa.svg",
@@ -37,8 +38,8 @@
   "entrypoints": [
     "static/js/runtime-main.98d32e4b.js",
     "static/css/2.1c9ef103.chunk.css",
-    "static/js/2.b312feec.chunk.js",
-    "static/css/main.dc48812a.chunk.css",
-    "static/js/main.bc25f502.chunk.js"
+    "static/js/2.65a962e2.chunk.js",
+    "static/css/main.923300d4.chunk.css",
+    "static/js/main.f93794e0.chunk.js"
   ]
 }
