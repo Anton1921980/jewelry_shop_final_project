@@ -42,7 +42,7 @@ export const LoginForm = props => {
   const dispatch = useDispatch();
 
   return (
-    <Layout>
+    // <Layout>
       <Modal onClose={onClose}>
         <FormWrapper>
           <FormLogIn>
@@ -77,7 +77,7 @@ export const LoginForm = props => {
           </FormRegister>
         </FormWrapper>
       </Modal>
-    </Layout>
+    // </Layout>
   );
 
   function onSubmit(event) {
