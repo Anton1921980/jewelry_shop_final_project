@@ -82,13 +82,13 @@ export const required = value => {
 };
 const emailValid = value =>
   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
-    ? "example: zz@xx.yy"
+    ? "example: example@mail.com"
     : undefined;
 export const LengthCreator = Length => value => {
-  if (value.length > Length) return `Max length is ${Length} symbols`;
+  if (value.length > Length) return `Maximum length is ${Length} symbols`;
   return undefined;
 };
-export const Length = LengthCreator(20);
+export const Length = LengthCreator(35);
 
 const FormControl = ({ input, meta: { touched, error }, children }) => {
   const hasError = touched && error;

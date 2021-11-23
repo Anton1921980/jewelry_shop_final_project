@@ -59,7 +59,7 @@ export const SliderProducts = props => {
   const [ids, setIds] = useState([]);
 
   let ids2 = localStorage.getItem("recent_ids");
-  let categories2 = [`bracelets`, `rings`, `earrings`, `necklaces`];
+  let categories2 = [`bracelets`, `rings`, `earrings`, `necklaces`,`pendants`];
   let ids1;
   ids2 && ids2.length && (ids1 = ids2.split(","));
   let ids3 = [...new Set(ids1)]; //remove repeats

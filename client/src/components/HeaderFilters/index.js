@@ -24,7 +24,7 @@ export const HeaderProductFilters = () => {
 
       <CategotiesCommon>
         <CategoriesFilters>
-          <h3>FILTER BY</h3>
+          <h3>FILTER BY:</h3>
           <FiltersList />
         </CategoriesFilters>
 

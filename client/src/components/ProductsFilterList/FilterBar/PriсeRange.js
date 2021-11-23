@@ -27,26 +27,27 @@ const AirbnbSlider = withStyles({
     marginTop: -7,
     marginLeft: -7,
     "&:focus, &:hover, &$active": {
-      boxShadow: "#002D50 0 2px 3px 1px"
+      border: "#002D50 2px solid #002D50"
     }
   },
   active: {},
   track: {
-    height: 1
+    height: 3
   },
   rail: {
     color: "#d8d8d8",
     opacity: 1,
-    height: 1
+    height: 2
   },
   markLabel: {
     fontSize: "14px",
     lineHeight: "10px",
-    top: "-17px",
+    top: "44px",
     fontFamily: "Montserrat",
-    left: "90%!important",
+    left: "95%!important",
     color: "#000000"
-  }
+  },
+ 
 })(Slider);
 
 export const PriсeRange = props => {
@@ -72,8 +73,8 @@ export const PriсeRange = props => {
 
   const marks = [
     {
-      value: 200000,
-      label: "₴ 200'000"
+      value: 150000,
+      label: "₴"
     }
   ];
 
@@ -83,10 +84,10 @@ export const PriсeRange = props => {
         <LeftMarc>₴</LeftMarc>
         <AirbnbSlider
           min={0}
-          max={200000}
+          max={150000}
           value={value}
           onChange={handleChange}
-          valueLabelDisplay="auto"
+          valueLabelDisplay="off"
           aria-labelledby="range-slider"
           // getAriaValueText={valuetext}
           onChangeCommitted={sendToStore}
@@ -96,11 +97,11 @@ export const PriсeRange = props => {
 
       <PriceDisplay>
         <Prices>
-          <p>From ₴-</p>
+          {/* <p>Current price range:</p> */}
           <p>{value[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'")}</p>
         </Prices>
         <Prices>
-          <p>To ₴-</p>
+          {/* <p>To ₴-</p> */}
           <p>{value[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'")}</p>
         </Prices>
       </PriceDisplay>
@@ -123,9 +124,8 @@ margin-bottom:30px;
     font-size: 14px;
   }
   & p:last-child {
-    font-size: 12px;
-    color: #c9ced7;
-    border-bottom: 1px solid #a7aabb;
+    font-size: 16px;
+    color: #8e8e8f;   
   }
 `;
 
@@ -135,4 +135,5 @@ const LeftMarc = styled.p`
   line-height: 10px;
   font-family: Montserrat;
   text-align: left;
+  display:none;
 `;

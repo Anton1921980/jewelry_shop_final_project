@@ -4,7 +4,7 @@ import { Layout } from "../common/Layout";
 import { Wishlist } from "./Wishlist";
 import { PageHeader } from "../common/PageHeader/PageHeader";
 
-export const WishlistView = () => {
+export const WishlistView = (props) => {
   return (
     <Layout>
       <FavoritesWrapper>

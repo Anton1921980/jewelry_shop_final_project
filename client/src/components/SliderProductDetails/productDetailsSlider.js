@@ -5,57 +5,63 @@ import Slider from "react-slick";
 
 import styled, { css } from "styled-components";
 
-export const ProductDetailsSlider = props => {
+export const ProductDetailsSlider = props =>
+{
   let { itemNo } = useParams();
 
-  const [productsAllData, setProductsAllData] = useState({});
+  const [ productsAllData, setProductsAllData ] = useState( {} );
   //может не вызывать а передавать данные с продукта уже вызваного в слайдер? через пропсы или редакс
-  useEffect(() => {
+  useEffect( () =>
+  {
     axios
-      .get(`http://localhost:5000/products/${itemNo}`)
-      .then(res => {
-        setProductsAllData(res.data);
-        console.log(res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, [itemNo]);
+      .get( `/products/${ itemNo }` )
+      .then( res =>
+      {
+        setProductsAllData( res.data );
+        console.log( res.data );
+      } )
+      .catch( err =>
+      {
+        console.log( err );
+      } );
+  }, [ itemNo ] );
 
   //при первом проходе переменная undefined
   const product = productsAllData !== undefined && productsAllData;
-  console.log(product);
+  console.log( product );
   const images = product.imageUrls !== undefined && product.imageUrls;
-  const imagesArr = Array.from(images);
+  const imagesArr = Array.from( images );
   const avatars = imagesArr.length;
 
-  let imagesSlider = imagesArr.map(image => {
+  let imagesSlider = imagesArr.map( image =>
+  {
     return (
-      <div key={image}>
+      <div key={ image }>
         <Image
           alt=""
-          src={process.env.PUBLIC_URL + "/" + image}
-          style={{
+          src={ process.env.PUBLIC_URL + "/" + image }
+          style={ {
             width: "99%",
             height: "99%",
             border: `1px solid #E9EBF5`,
             boxSizing: "border-box"
-          }}
+          } }
         />
       </div>
     );
-  });
+  } );
 
   const slider1 = useRef();
   const slider2 = useRef();
-  const [state, setState] = useState({ nav1: null, nav2: null });
+  const [ state, setState ] = useState( { nav1: null, nav2: null } );
 
-  useEffect(() => {
-    setState({
+  useEffect( () =>
+  {
+    setState( {
       nav1: slider1.current,
       nav2: slider2.current
-    });
-  }, []);
+    } );
+  }, [] );
   const { nav1, nav2 } = state;
 
   return (
@@ -63,52 +69,52 @@ export const ProductDetailsSlider = props => {
       <Container>
         <div
           className="carousel_wrapper"
-          style={{
+          style={ {
             height: ``,
             width: `6%`,
             marginTop: `40px`,
             marginRight: `20px`
-          }}
+          } }
         >
           <Slider
-            asNavFor={nav1}
-            ref={slider => (slider2.current = slider)}
-            slidesToShow={avatars}
-            slidesToScroll={1}
-            focusOnSelect={true}
-            vertical={true}
-            style={{ boxSizing: "border-box" }}
+            asNavFor={ nav1 }
+            ref={ slider => ( slider2.current = slider ) }
+            slidesToShow={ avatars }
+            slidesToScroll={ 1 }
+            focusOnSelect={ true }
+            vertical={ true }
+            style={ { boxSizing: "border-box" } }
           >
-            {imagesSlider}
+            { imagesSlider }
           </Slider>
         </div>
         <div
           className="carousel_wrapper"
-          style={{
+          style={ {
             height: ``,
             width: `43%`,
             marginTop: `40px`,
             marginRight: `20px`,
             boxSizing: `border-box`
-          }}
+          } }
         >
           <Slider
-            asNavFor={nav2}
-            ref={slider => (slider1.current = slider)}
-            speed={0.1}
-            arrows={false}
-            draggable={false}
-            // fade={true}
+            asNavFor={ nav2 }
+            ref={ slider => ( slider1.current = slider ) }
+            speed={ 0.1 }
+            arrows={ false }
+            draggable={ false }
+          // fade={true}
           >
-            {imagesSlider}
+            { imagesSlider }
           </Slider>
         </div>
 
         <Wrapper>
-          <Name line={"true"}>{product.name}</Name>
-          <Vendor>{`Article no.: ${product.itemNo}`}</Vendor>
+          <Name line={ "true" }>{ product.name }</Name>
+          <Vendor>{ `Article no.: ${ product.itemNo }` }</Vendor>
           <PriceWrapper>
-            <Price>{`${product.currentPrice}`}</Price>
+            <Price>{ `${ product.currentPrice }` }</Price>
             <WishWrapper>
               <WishButton>Add to wish list</WishButton>
               <Heart>&#9825;</Heart>
@@ -117,12 +123,12 @@ export const ProductDetailsSlider = props => {
           <Add>Add to bag</Add>
           <Details>Details</Details>
           <UL>
-            <LI>{`Gemstone: ${product.gemstone}`} </LI>
-            <LI>{`Collection: ${product.collection}`}</LI>
-            <LI>{`Metal: ${product.metal}`}</LI>
-            <LI>{`Metal Color: ${product.metal_color}`}</LI>
-            <LI>{`Weight: ${product.weight}`}</LI>
-            <LI>{`Sample: ${product.sample}`}</LI>
+            <LI>{ `Gemstone: ${ product.gemstone }` } </LI>
+            <LI>{ `Collection: ${ product.collection }` }</LI>
+            <LI>{ `Metal: ${ product.metal }` }</LI>
+            <LI>{ `Metal Color: ${ product.metal_color }` }</LI>
+            <LI>{ `Weight: ${ product.weight }` }</LI>
+            <LI>{ `Sample: ${ product.sample }` }</LI>
           </UL>
         </Wrapper>
       </Container>
@@ -155,7 +161,7 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
   }
-  ${props =>
+  ${ props =>
     props.flex === "column" &&
     css`
       flex-direction: column;
@@ -183,7 +189,7 @@ export const Image = styled.img`
     height: 334px;
   }
 
-  ${props =>
+  ${ props =>
     props.size === "small" &&
     css`
       width: 206px;
@@ -211,7 +217,7 @@ export const Name = styled.p`
     font-size: 20px;
   }
 
-  ${props =>
+  ${ props =>
     props.line === "true" &&
     css`
       &:after {
@@ -224,7 +230,7 @@ export const Name = styled.p`
         background: #3c3b3b;
       }
     `}
-  ${props =>
+  ${ props =>
     props.size === "small" &&
     css`
       font-size: 16px;
@@ -260,7 +266,7 @@ export const Price = styled.div`
     display: inline;
     font-size: 12px;
   }
-  ${props =>
+  ${ props =>
     props.size === "small" &&
     css`
       justify-self: flex-end;

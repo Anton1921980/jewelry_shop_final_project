@@ -20,6 +20,7 @@ import { Button } from "../common/Button/Button";
 import { SortedbyPopup } from "./SortedbyPopup";
 import { FilteredListProducts } from "./FilteredProducts";
 import ProductsContainer from "./../SliderProducts/ProductsContainer";
+import pendants from "./images/pendants.png";
 import earrings from "./images/earrings.png";
 import bracelets from "./images/bacelets.png";
 import rings from "./images/rings.png";
@@ -27,6 +28,8 @@ import necklaces from "./images/necklaces.png";
 import dropArrow from "./images/DroppArrow.png";
 
 export const ProductFilters = props => {
+  let { category } = useParams();
+
   const { homepagecategory } = useParams();
   const { chosenMenu } = useParams();
   const dispatch = useDispatch();
@@ -37,7 +40,9 @@ export const ProductFilters = props => {
   );
   const priceFilters = useSelector(state => state.filters.priceRange);
   // const category = (!!homepagecategory) ? chosenMenu : homepagecategory.replace("homepage", "");
-  const category = !!homepagecategory ? homepagecategory : chosenMenu;
+
+  // const category = !!homepagecategory ? homepagecategory : chosenMenu;
+
 
   const [openFiltwin, setOpenFiltwind] = useState(false);
   const [isOpenSortedPopup, setIsOpenSortedPopup] = useState(false);
@@ -45,16 +50,17 @@ export const ProductFilters = props => {
   const [queryCategory, setQueryCategory] = useState("");
   const [breadcrumbsCategory, setBreadcrumbsCategory] = useState("");
   const [sortType, setSortType] = useState("");
-  const initialPriceValue = { min: 0, max: 200000 };
+  const initialPriceValue = { min: 0, max: 150000 };
 
   // console.log(homepagecategory, chosenMenu, category)
-  const filtredBy = [
+  const filtredBy = [  
     "price",
+    "categories",
     "collection",
     "metal",
     "metal_color",
     "gemstone",
-    "gemstone_color"
+    "gemstone_color",   
   ];
 
   useLayoutEffect(() => {
@@ -98,14 +104,25 @@ export const ProductFilters = props => {
   }, [category]);
 
   const query = querystring.stringify(filters, { arrayFormat: "comma" });
-  const querySort =
-    sortType &&
-    (sortType === "price Increase"
-      ? "&sort=+currentPrice"
-      : "&sort=-currentPrice");
-  const commonSort = `${query ? "&" : ""}minPrice=${
-    priceFilters.lowPriсe
-  }&maxPrice=${priceFilters.hightPrice}${querySort}`;
+
+  let querySort = ""
+  if (sortType && sortType === "price increase") {
+    querySort = "&sort=+currentPrice";
+  }
+  else if (sortType && sortType === "price decrease") {
+    querySort = "&sort=-currentPrice";
+  }
+  else if (sortType && sortType === "new products") {
+    querySort = "";
+  }
+  // const querySort =
+  //   sortType &&
+  //   (sortType === "price increase"
+  //     ? "&sort=+currentPrice"
+  //     : "&sort=-currentPrice");
+
+  const commonSort = `${query ? "&" : ""}minPrice=${priceFilters.lowPriсe
+    }&maxPrice=${priceFilters.hightPrice}${querySort}`;
 
   const selectAction = e => {
     setSortType(e.target.value);
@@ -114,6 +131,7 @@ export const ProductFilters = props => {
   useEffect(() => {
     const filterUrl = `/products/filter?${queryCategory}&${query}${commonSort}`;
   }, [query, commonSort, queryCategory, sortType]);
+  console.log("TCL: queryCategory", queryCategory)
 
   const background = name => {
     switch (name) {
@@ -125,6 +143,9 @@ export const ProductFilters = props => {
       }
       case "bracelets": {
         return bracelets;
+      }
+      case "pendants": {
+        return pendants;
       }
       case "rings": {
         return rings;
@@ -138,10 +159,10 @@ export const ProductFilters = props => {
     <Layout>
       <CategoriesHeader>
         <p>{category}</p>
-        <CategoriesHeaderImg categoryName={background(breadcrumbsCategory)} />
+        <CategoriesHeaderImg category={category} />
       </CategoriesHeader>
       {window.innerWidth < 767 ? null : (
-        <IconBreadcrumbs categoryName={breadcrumbsCategory} />
+        <IconBreadcrumbs categoryName={category} />
       )}
       <CategotiesCommon>
         {window.innerWidth < 767 ? (
@@ -172,7 +193,7 @@ export const ProductFilters = props => {
           </MobileCategoriesFilters>
         ) : (
           <CategoriesFilters>
-            <p>FILTER BY</p>
+            <p>FILTER BY:</p>
             <FiltersList filtredBy={filtredBy} />
             <ButtonSection>
               <Button
@@ -188,16 +209,22 @@ export const ProductFilters = props => {
           <SelectedProductsHeader>
             <p>{`Selected products (${selectedProd})`}</p>
             <SortSection>
-              <p>SORTED BY</p>
-              <StyledSelect onChange={selectAction} defaultValue="Choose">
-                <option value="priceIncrease">Price increase</option>
-                <option value="priceDecrease">Price decrease</option>
+              <p>Sort by:</p>
+              <StyledSelect onChange={selectAction} default="choose">
+                <option value="new products">new products</option>
+                <option value="price increase">price increase</option>
+                <option value="price decrease">price decrease</option>
               </StyledSelect>
             </SortSection>
           </SelectedProductsHeader>
           <FilterIndicators />
+
+          {/* ИГОРЯ на залогиненом работает фильтр цены*/}
           {/* <FilteredListProducts category={category} /> */}
-          <ProductsContainer />
+
+          {/* МОЙ */}
+          <ProductsContainer commonSort={commonSort} />
+
         </SelectedProducts>
       </CategotiesCommon>
     </Layout>
@@ -220,7 +247,8 @@ const CategoriesHeader = styled.div`
   }
 `;
 const CategoriesHeaderImg = styled.div`
-  background-image: url(${props => props.categoryName});
+  background-image:   url(/img/homePage/categories/${props => props.category}.png) ;
+  /img/products/necklaces
   height: inherit;
   width: 668px;
   background-repeat: no-repeat;
@@ -301,11 +329,11 @@ const SelectedProducts = styled.div`
 const SelectedProductsHeader = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
   & > p {
     font-family: Old Standard TT;
     font-size: 17px;
-    text-transform: uppercase;
-    margin-bottom: 23px;
+    text-transform: uppercase;   
   }
   ${mediaMobile(`;
      display:none;     

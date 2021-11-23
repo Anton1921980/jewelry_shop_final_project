@@ -2,7 +2,7 @@
   height: 30px;
   display: inline-block;
   position: relative;
-  left: 5%;
+  left: 20%;
 }
 .upper {
   position: relative;
@@ -61,7 +61,7 @@
   border: 1px solid lightgrey;
   width: 280px;
   margin-top: 4%;
-  margin-left: 37%;
+  margin-left: 33.5%;
   margin-bottom: 4%;
   cursor: pointer;
 }
@@ -115,7 +115,7 @@
 .top {
   border-width: 0 3px 3px 0;
   display: inline-block;
-  margin-left: 4%;
+  margin-left: 25%;
   position: relative;
   top: 12px;
   padding: 10px;

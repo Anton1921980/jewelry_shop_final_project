@@ -10,7 +10,7 @@ export const productsAPI = {
     category2 === "&categories=undefined" && (category2 = "");
     return instance
       .get(
-        // `/products/filter?${apiCategory}&startPage=${currentPage}&perPage=${pageSize}`
+        // `/products/filter?${apiCategory}&startPage=${currentPage}&perPage=${pageSize}`    &sort=+currentPrice
         `/products/filter?${categoryQuery}${category2}&startPage=${currentPage}&perPage=${pageSize}`
       )
       .then(response => {

@@ -41,23 +41,26 @@ const priceRange = payload => ({
 const initialState = {
   availFilters: [],
   selFilters: {
+    categories:[],
     collection: [],
     metal: [],
     metal_color: [],
     gemstone: [],
-    gemstone_color: []
+    gemstone_color: [],   
   },
   menuState: {
-    price: false,
+    price: true,
+    categories: false,
     collection: false,
     metal: false,
     metal_color: false,
     gemstone: false,
-    gemstone_color: false
+    gemstone_color: false,
+   
   },
   priceRange: {
     lowPriсe: 0,
-    hightPrice: 200000
+    hightPrice: 150000
   }
 };
 
@@ -107,7 +110,8 @@ export function filtersReduser(store = initialState, { type, payload }) {
           metal: [],
           metal_color: [],
           gemstone: [],
-          gemstone_color: []
+          gemstone_color: [],
+          categories:[],
         }
       };
     }

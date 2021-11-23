@@ -2,9 +2,12 @@ const nodemailer = require("nodemailer");
 const keys = require("../config/keys");
 const getConfigs = require("../config/getConfigs");
 
+
+
 module.exports = async (subscriberMail, letterSubject, letterHtml, res) => {
   const configs = await getConfigs();
-
+  //!!! добавил проверку на получение без нее перестал работать
+ if (configs){
 console.log(configs)
   //authorization for sending email
   let transporter = nodemailer.createTransport({
@@ -26,6 +29,7 @@ console.log(configs)
     tls: {
       rejectUnauthorized: false
   }
+
   });
 
   const mailOptions = {
@@ -39,7 +43,9 @@ console.log(configs)
   };
 
   const result = await transporter.sendMail(mailOptions);
+  console.log("TCL:mailSender.js  result", result)
 
   return result
-  console.log(result);
+ }
+
 };

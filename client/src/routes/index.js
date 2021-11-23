@@ -6,6 +6,7 @@ import { Homepage } from "../components/homePage/HomePage";
 import { ProductFilters } from "../components/ProductsFilterList";
 import { GiftCardView } from "../components/GiftCardsView/GiftCardView";
 import { ProductDetailsLayout } from "../components/ProductDetails";
+import { LoginForm } from "../components/Forms/LoginForm/LoginForm";
 import {
   AccountRoute,
   PersonalInformationRouter
@@ -17,6 +18,7 @@ import { Checkout } from "../components/Checkout";
 import { WishlistView } from "../components/Wishlist/WishlistView";
 import { WishlistRouter } from "../components/PersonalDetails/MobileWishlist/MobileWishlist";
 
+
 export const Routes = () => {
   const user = useSelector(state => state.user);
 
@@ -25,8 +27,10 @@ export const Routes = () => {
       <Route exact path="/" component={Homepage} />
       <Route path="/headerMenu/:chosenMenu" component={ProductFilters} />
       <Route exact path="/giftсards" component={GiftCardView} />
-      <Route path="/categories/:homepagecategory" component={ProductFilters} />
-      <Route path="/products" component={ProductFilters} />
+      <Route path="/categories/:category?" component={ProductFilters} />
+      <Route path="/products/:all_categories?" component={ProductFilters} />
+      {/* <Route path="/categories/:homepagecategory" component={ProductFilters} />
+      <Route path="/products" component={ProductFilters} /> */}
       <Route path="/product-details/:id" component={ProductDetailsLayout} />
       <Route exact path="/account" component={AccountRoute} />
       <Route
@@ -53,8 +57,16 @@ export const Routes = () => {
       <Route exact path="/favorites" component={WishlistView} />
       <Route path="/headerMenu/:chosenMenu" component={ProductFilters} />
       <Route exact path="/giftсards" component={GiftCardView} />
-      <Route path="/categories/:homepagecategory" component={ProductFilters} />
-      <Route path="/products" component={ProductFilters} />
+
+      <Route path="/categories/:category?" component={ProductFilters} />
+      <Route path="/products/:all_categories?" component={ProductFilters} />
+      <Route path="/login-form" component={LoginForm}/>
+
+      {/* <Route path="/categories/:homepagecategory" component={ProductFilters} />
+      <Route path="/products" component={ProductFilters} /> */}
+
+      <Route exact path="/account/shopping-bag" component={ShoppingBag} />
+
       <Route path="/product-details/:id" component={ProductDetailsLayout} />
       <Route path="/login" component={ProductFilters} />
       <Route path="/404error" component={Error} />

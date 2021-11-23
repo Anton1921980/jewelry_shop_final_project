@@ -150,7 +150,7 @@ export const ShoppingBag = () => {
           <>
             {window.matchMedia(`(min-width: ${mediaQueryMobile}px)`).matches ||
             isMobile.width > mediaQueryMobile ? (
-              <Continue onClick={() => history.push("/")}>
+              <Continue onClick={() => history.push("/products")}>
                 <ArrowImg src={arrow} />
                 Continue Shopping
               </Continue>

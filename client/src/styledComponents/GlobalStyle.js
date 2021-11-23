@@ -40,6 +40,8 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     line-height: 1;
+    max-width: 100%;  
+    overflow-x: hidden;
   }
   ol, ul {
     list-style: none;
@@ -151,6 +153,47 @@ const GlobalStyle = createGlobalStyle`
   ZarinaPage {
     font-weight: bold;
 }
+/* custom srollbar */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* button */
+::-webkit-scrollbar-button {
+    background:lightgrey; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: lightgrey; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: grey; 
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: white; 
+}
+
+/* The track NOT covered by the handle.
+::-webkit-scrollbar-track-piece {
+    background: #000; 
+}
+
+/* Corner */
+::-webkit-scrollbar-corner {
+    background: #999; 
+}
+
+/* Resizer */
+::-webkit-resizer {
+    background: #111; 
+}
+
 `;
 
 export { GlobalStyle as default };

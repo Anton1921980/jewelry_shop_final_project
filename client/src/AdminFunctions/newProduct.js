@@ -19,6 +19,7 @@ export function addProduct() {
     productUrl: "/necklaces",
     brand: "Zarina",
     collection: "Melanka",
+    categories: "necklaces",
     metal: "gold",
     gemstone: "diamond",
     weight: "2.76",

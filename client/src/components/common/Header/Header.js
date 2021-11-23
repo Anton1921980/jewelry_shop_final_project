@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
+
 import {
   Container,
   Line,
@@ -58,7 +59,20 @@ export const HeaderContent = () => {
             <CreateAccountForm onClose={() => toggleSuccess(false)} />
           )}
           <Favorites />
-          <ShoppingBag />
+          {/* {user && (<ShoppingBag />)} */}
+          {/* {!user && ( */}
+          <ShoppingBag onLoginClick={onLoginClick}
+            toggleModal={toggleModal}
+            isRegisterOpen={isRegisterOpen}
+            RegisterForm={RegisterForm}
+            toggleRegistration={toggleRegistration}
+            GoBackToLogin={GoBackToLogin}
+            onRegisterSuccess={onRegisterSuccess}
+            isSuccess={isSuccess}
+            toggleSuccess={toggleSuccess}
+          />
+          {/* )} */}
+
         </HeaderIconWrapper>
       </HeaderWrapper>
       <Categories>
@@ -88,5 +102,5 @@ export const HeaderContent = () => {
       return;
     }
     toggleModal(!isModalOpen);
-  }
+  } 
 };

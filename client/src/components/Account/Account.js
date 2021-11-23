@@ -31,7 +31,7 @@ export const Account = () => {
           <Arrow onClick={onWishlistClick} />
         </Holder>
         <Holder>
-          <Item>Adess book</Item>
+          <Item>Adress book</Item>
           <Arrow />
         </Holder>
         <Holder>

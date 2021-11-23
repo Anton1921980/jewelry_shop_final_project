@@ -9,46 +9,46 @@ console.log("start");
 // let categories = "bracelets";
 // let categories = "earrings";
 // let categories = "necklaces";
-// let categories = "rings";
+let categories = "rings";
 
 // !!! не забыть папку для фото проверить и поменять категорию и закомментить лишние ссылки
 
 var urls = [
 
   //pendants
-  // 'https://zarina.ua/ua/catalog/podvesy',
-  // 'https://zarina.ua/ua/catalog/podvesy?p=2',
-  // 'https://zarina.ua/ua/catalog/podvesy?p=3',
+  // 'https://zarina.ua/catalog/podvesy',
+  // 'https://zarina.ua/catalog/podvesy?p=2',
+  // 'https://zarina.ua/catalog/podvesy?p=3',
 
 // //bracelets
-  // "https://zarina.ua/ru/catalog/braslety",
+  // "https://zarina.ua/catalog/braslety",
   // "https://zarina.ua/ru/catalog/braslety?p=2",
   // "https://zarina.ua/ru/catalog/braslety?p=3",
 
 
   //earrings
-  // "https://zarina.ua/ru/catalog/sergi",
+  // "https://zarina.ua/catalog/sergi",
   // "https://zarina.ua/ru/catalog/sergi?p=2",
   // "https://zarina.ua/ru/catalog/sergi?p=3",
 
   //necklaces
-  // "https://zarina.ua/ru/catalog/kolie",
+  // "https://zarina.ua/catalog/kolie",
   // "https://zarina.ua/ru/catalog/kolie?p=2",
   // "https://zarina.ua/ru/catalog/kolie?p=3"
 
   //rings
-  // "https://zarina.ua/ua/catalog/kolca",
+  "https://zarina.ua/catalog/kolca",
   // "https://zarina.ua/ua/catalog/kolca?p=2",
   // "https://zarina.ua/ua/catalog/kolca?p=3",
 ];
-function qqq(url) {
+function get_page(page_url) {
   needle.get(
-    url,
+    page_url,
     function(err, res) {
       if (err) throw err;
       var $ = cheerio.load(res.body);
 
-      let link = $(".image a");
+      let link = $(".product_image_wrapper a");
       let links = [];
       link.each(function(i, val) {
         var linkItem = $(val).attr("href");
@@ -58,8 +58,8 @@ function qqq(url) {
       //links доступен только тут и вызываем загрузку каждого продукта
       var i = 0;
       while (links.length > i) {
-        let url2 = links[i];
-        qqqqq(url2);
+        let product_url = links[i];
+        get_product(product_url);
         i++;
       }
     },
@@ -69,42 +69,89 @@ function qqq(url) {
 
 for (let i = 0; urls.length > i; i++) {
   // выведет 0, затем 1, затем 2
-  let url = urls[i];
-  qqq(url);
+  let page_url = urls[i];
+  get_page(page_url);
 
-  console.log("TCL: url", url);
+  console.log("TCL: page_url", page_url);
 }
 
-function qqqqq(url2) {
+// get_product("https://zarina.ua/serezhki-hjurrem-bilij-rodij"); //тестируем 1 продукт
+
+function get_product(product_url) {
   needle.get(
-    url2,
+    product_url,
     function(err, res) {
       if (err) throw err;
 
-      var $ = cheerio.load(res.body);
 
-      let th = $(".label");
-      let td = $(".label").next();
-      let imgMain = $(".main-thumbnail");
-      let img = $(".fade-image");
+
+      var $ = cheerio.load(res.body);
+  
+
+      // console.log("TCL: functionget_product -> res.body", res.body)
+      
+
+//описание товара
+
+      let th1 = $(".attribute_item>.label").text();
+      console.log("TCL: functionget_product -> th1", th1)
+      var th = th1.split(":");
+      console.log("TCL: functionget_product -> th", th)
+
+   
+      let td1 = $(".value").append(":").text()
+
+
+      console.log("TCL: functionget_product -> td1 ", td1 )
+      let td = td1.split(":");
+      console.log("TCL: functionget_product -> td", td)
+      
+
+
+      // let td = $(".label").next();
+
+      let imgMain1 = $(".gallery-placeholder__image").attr('srcset')
+      .replace(/cache\/.*?\//, '')
+      console.log("TCL: functionget_product -> imgMain1", imgMain1)
+      // удаляем cache/a6c52857580bce6f0c970cda33e4ab72/
+      //https://zarina.ua/media/mf_webp/jpg/media/catalog/product/cache/a6c52857580bce6f0c970cda33e4ab72/3/-/3-387_276.webp
+
+      //добавляем второю картинку вручную  
+       let imgMain2 = imgMain1.slice(0,imgMain1.length-5)+"_1_.webp"
+       let imgMain3 = imgMain1.slice(0,imgMain1.length-5)+"_2_.webp"
+
+       console.log("TCL: functionget_product -> imgMain3", imgMain3)
+       console.log("TCL: functionget_product -> imgMain2", imgMain2)
+
+       let imgMain=[imgMain1,imgMain2,imgMain3]
+       console.log("TCL: functionget_product -> imgMain", imgMain)
+      
+
       let price111 = $(".price")
         .text()
-        .replace(/...../i, "")
-        .replace(/.ГРН.*/i, "")
+        // .replace(/...../i, "")
+        .replace(/.грн.*/i, "")
         .replace(/\s/i, "");
+
+      console.log("TCL: functionget_product -> price111", price111)
+
       let price222 = Number(price111);
 
       if (price222 !== NaN) {
         let price333 = price222;
+        console.log("TCL: functionget_product -> price333", price333)
+  
 
         let thh = [];
         let tdd = [];
         let imgg2 = [];
         let imgg = [];
 
-        th.each(function(i, val) {
-          var thItem = $(val)
-            .text()
+
+for(let i=0;i<th.length;i++){      
+  
+          let thItem = th[i]         
+            .replace("Знижка", "discount")
             .replace("Price From:", "currentPrice")
             .replace("Вид застібки", "fixer")
             .replace("Цвет металла", "metal_color")
@@ -121,12 +168,19 @@ function qqqqq(url2) {
             .replace("Розмір", "size")
             .replace("Вага", "weight")
             .replace("Вес", "weight");
-          thh.push(thItem);
-        });
 
-        td.each(function(i, val) {
-          var tdItem = $(val)
-            .text()
+            console.log("TCL: functionget_product -> thItem", thItem)
+     
+          thh.push(thItem);
+
+          console.log("TCL: functionget_product -> thh", thh)        
+      }
+
+
+      for(let i=0;i<td.length;i++){      
+  
+        let tdItem = td[i]      
+            .replace("Немає", "none")
             .replace("Золото", "gold")
             .replace("Cрібло", "silver")
             .replace("Жовтий", "yellow")
@@ -221,25 +275,40 @@ function qqqqq(url2) {
             .replace("Димчатий", "")
 
           tdd.push(tdItem);
-        });
+        };
+
         //ставим правильную картинку на главную
-        imgMain.each(function(i, val) {
-          let image2 = $(val).attr("href");
+        for(let i=0;i<imgMain.length;i++){
+          let image2 = imgMain[i]
           let image1 = image2.substr(image2.lastIndexOf("/"));
           let image = `/img/products/${categories}${image1}`;
-          imgg[0] = image;
-          imgg2[0] = image2;
-        });
-        //все картинки гавная теперь дублируется
-        img.each(function(i, val) {
-          let image2 = $(val)
-            .attr("src")
-            .replace("thumbnail/128x128/", "image/");
-          let image1 = image2.substr(image2.lastIndexOf("/"));
-          let image = `/img/products/${categories}${image1}`;
-          imgg.push(image);
-          imgg2.push(image2);
-        });
+          // imgg[0] = image;
+          // imgg2[0] = image2;
+            imgg.push(image);
+            imgg2.push(image2);
+          
+        }
+
+
+        // $(imgMain).each(function(i, val) {
+        //   let image2 = $(val)
+        //   let image1 = image2.substr(image2.lastIndexOf("/"));
+        //   let image = `/img/products/${categories}${image1}`;
+        //   // imgg[0] = image;
+        //   // imgg2[0] = image2;
+        //     imgg.push(image);
+        //     imgg2.push(image2);
+        // });
+        //все картинки главная теперь дублируется
+        // img.each(function(i, val) {
+        //   let image2 = $(val)
+        //     .attr("src")
+        //     .replace("thumbnail/128x128/", "image/");
+        //   let image1 = image2.substr(image2.lastIndexOf("/"));
+        //   let image = `/img/products/${categories}${image1}`;
+        //   imgg.push(image);
+        //   imgg2.push(image2);
+        // });
         //удаляем дубликат главной картинки
         imgg = Array.from(new Set(imgg));
         imgg2 = Array.from(new Set(imgg2));
@@ -272,15 +341,17 @@ function qqqqq(url2) {
         if (!result.hasOwnProperty("metal_color")) {
           result.metal_color = "white";
         }
-        result.product_url = url2;
+        result.product_url = product_url;
         result.imageUrls = imgg;
         result.imageUrls2 = imgg2;
-        result.previousPrice = result.currentPrice;
+        result.previousPrice = price333;
+        result.currentPrice = price333;
         result.name = `${result.gemstone} ${result.metal} ${categories.slice(
           0,
           -1
         )}`;
-        // console.log("result", result)
+        
+        console.log("result", result)
 
         ///поле цены в некоторых товарах пеескакивает в поле пробу sample, не добавляем их
         if (
@@ -329,14 +400,16 @@ function qqqqq(url2) {
             });
           }
 
-          //   console.log("TCL: qqqqq -> result", result);
+          //   console.log("TCL: get_product -> result", result);
 
           addProduct(result);
+
         } //в поле проба попадала иногда цена причину не нашел, это костыль
       }
     },
     100
   );
+  
 }
 
 //убрать пробелы заменить названия на англ через регулярные
